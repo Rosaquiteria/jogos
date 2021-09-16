@@ -1,0 +1,60 @@
+
+{% extends '../template.html' %}
+{% load static %}
+{% block conteudo %}
+    <div class="row">
+        <div class="col-12">
+            <div align="center">
+                <h2>Criar Jogo</h2>
+            </div>
+        </div>
+    </div>
+
+    <form action="{% url 'criar_jogo' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-12 col-lg-6 mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                <label for="genero" class="form-label">Gênero</label>
+                <input type="text" class="form-control" id="genero" name="genero" required>
+            </div>
+            <div class="col-12 col-lg-3 mb-3">
+                <label for="qtd_paginas" class="form-label">Críticas: </label>
+                <input type="text" class="form-control" id="qtd_paginas" name="qtd_paginas" required>
+            </div>
+            <div class="col-12 col-lg-3 mb-3">
+                <label for="qtd_paginas" class="form-label">Enredo: </label>
+                <input type="text" class="form-control" id="qtd_paginas" name="qtd_paginas" required>
+            </div>
+
+            <div class="col-12 col-lg-3 mb-3">
+                <label for="qtd_paginas" class="form-label">Avaliação: </label>
+                <input type="text" class="form-control" id="qtd_paginas" name="qtd_paginas" required>
+            </div>
+            <div class="col-12 col-lg-3 mb-3">
+                <label for="ano_pub" class="form-label">Data de Lançamento: </label>
+                <input type="number" class="form-control" id="ano_pub" name="ano_pub" required>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+              <label for="capa_livro" class="form-label">Capa do jogo</label>
+              <input class="form-control" type="file" id="capa_livro" name="capa_livro">
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                <label for="autor" class="form-label">Desenvolvedor: </label>
+                <select class="form-select" multiple size="3" name="autor" aria-label="multiple select example" id="autor" required>
+                {% for desenvolvedores in desenvolvedores %}
+                    <option value="{{ desenvolvedores.id }}" name="desenvolvedores">{{ desenvolvedores.nome }}</option>
+                {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-12 col-lg-12">
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+            </div>
+        </div>
+    </form>
+
+{% endblock %}

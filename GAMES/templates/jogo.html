@@ -1,0 +1,52 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewsport", content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="static/css/bootstrap.min.css">
+      <link rel="icon" href="static/img/cabelos.png">
+      <title>Jogos</title>
+
+  </head>
+  <body>
+        <div class="container my-3">
+            <div class="page-header text-center py-3">
+                <h1>Jogos</h1>
+            </div>
+            <div class="row">
+                <div class="card" style="">
+                    {% if jogo.capa == '' %}
+                        <img src=" {% static 'img/jogo.jpeg'%}" class="card-img-top" alt="...">
+                    {% else %}
+                        <img src=" {{ jogo.capa.url }}" class="card-img-top" alt="...">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ jogo.nome }}</h5>
+                        <p class="h4"><strong>Criador:</strong> {{ jogo.criador }}</p>
+                        <p class="card-text"><strong>Data de lançamento:</strong>  {{ jogo.datadelancamento }} </p>
+                        <p class="card-text"><strong>Gênero:</strong>  {{ jogo.generos }} </p>
+                        <p class="card-text"><strong>Enredo:</strong>   </p>
+                        <p class="card-text">{{ jogo.enredo }}</p>
+                        <p class="card-text"><strong>Crítica:</strong>  {{ jogo.critica }} </p>
+                        <p class="card-text"><strong>Plataforma:</strong> {{ jogo.plataformas }} </p>
+                        <p class="card-text"><strong>Avaliação:</strong>  {{ jogo.avaliacao }}</p>
+                        {% for desenvolvedores in Jogo.desenvolvedores.all %}
+                        <p class="card-text"> Desenvolvedores: {{ jogo.desenvolvedores }} </p>
+                        {% endfor %}
+                        {% for usuario in Jogo.usuario.all %}
+                             <p class="card-text"> Usuário: {{ jogo.usuario }}</p>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+  </body>
+</html>
+{% endblock %}
